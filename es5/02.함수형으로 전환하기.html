@@ -144,16 +144,11 @@
     console.log(sub(10, 5)) // 10 - 5 = 5
 
     // 4-2. _get
-    function _get(obj, key) {
-      return obj == null ? undefined : obj[key];
-    }
     console.log(users[0].name)
     console.log(_get(users[0], 'name'));
 
     // console.log(users[10].name) // 에러
     console.log(_get(users[10], 'name')); // undefined
-
-
 
     console.log(_get('name')(users[0]))
     var get_name = _get('name')
@@ -174,6 +169,32 @@
       )
     )
 
+    // 5. reduce
+    var slice = Array.prototype.slice;
+    function _rest(list, num) {
+      return slice.call(list, num || 1);
+    }
+
+
+    function _redude(list, iter, memo) {
+      if (arguments.length == 2) {
+        memo = list[0];
+        list = _rest(list);
+      }
+
+      _each(list, function (val) {
+        memo = iter(memo, val)
+      })
+      return memo;
+    }
+
+    console.log(
+      _redude([1, 2, 3, 4], add, 0)
+    );
+
+    console.log(
+      _redude([1, 2, 3, 4], add)
+    );
 
   </script>
 
