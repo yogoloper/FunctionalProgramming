@@ -1,3 +1,22 @@
+// _curry
+function _curry(fn) {
+  return function (a, b) {
+    return arguments.length == 2 ? fn(a, b) : function (b) { return fn(a, b); }
+  }
+}
+
+// _curryr
+function _curryr(fn) {
+  return function (a, b) {
+    return arguments.length == 2 ? fn(a, b) : function (b) { return fn(b, a); }
+  }
+}
+
+// _get
+var _get = _curryr(function (obj, key) {
+  return obj == null ? undefined : obj[key];
+});
+
 // _filter
 function _filter(list, predi) {
   var new_ilst = [];

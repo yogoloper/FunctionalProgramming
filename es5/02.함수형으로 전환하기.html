@@ -123,17 +123,6 @@
 
     // 4. 커링
     // 4-1._curry, _curryr
-    function _curry(fn) {
-      return function (a, b) {
-        return arguments.length == 2 ? fn(a, b) : function (b) { return fn(a, b); }
-      }
-    }
-
-    function _curryr(fn) {
-      return function (a, b) {
-        return arguments.length == 2 ? fn(a, b) : function (b) { return fn(b, a); }
-      }
-    }
 
     var add = _curry(function (a, b) {
       return a + b;
@@ -164,9 +153,7 @@
     // console.log(users[10].name) // 에러
     console.log(_get(users[10], 'name')); // undefined
 
-    var _get = _curryr(function (obj, key) {
-      return obj == null ? undefined : obj[key];
-    });
+
 
     console.log(_get('name')(users[0]))
     var get_name = _get('name')
@@ -186,6 +173,7 @@
         _get('age')
       )
     )
+
 
   </script>
 
